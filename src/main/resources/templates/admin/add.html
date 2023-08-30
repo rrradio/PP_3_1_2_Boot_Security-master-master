@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/}" th:object="${user}">
+    <label for="username"> Enter name: </label>
+    <input type="text" th:field="*{username}"  id="username" size="20" >
+    <div style="color:darkred" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"> nameErr </div>
+    <br/>
+    <label for="age"> Enter age: </label>
+    <input type="text" th:field="*{age}" id="age" size="20">
+    <div style="color:darkred" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"> ageErr </div>
+    <br/>
+    <label for="email"> Enter email: </label>
+    <input type="text" th:field="*{email}" id="email" size="20">
+    <div style="color:darkred" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> mailErr </div>
+    <br/>
+    <label for="password"> Enter password: </label>
+    <input type="password" th:field="*{password}" id="password" size="20">
+    <div style="color:darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> mailErr </div>
+    <br/>
+
+    <label for="users_roles"> Select role: </label>
+    <select id="users_roles" name="users_roles" multiple size="2" >
+        <option th:each="role : ${users_roles}"
+                th:value="${role}"
+                th:text="${role}">
+        </option>
+    </select>
+
+    <br/>
+    <input type="submit" value="Add" >
+</form>
+
+<br/>
+<a href="/logout">logout</a>
+
+</body>
+</html>
